@@ -1,0 +1,17 @@
+{% for film in films %}
+    <hr>
+    <p>
+        Назва фільму: {{ film.name }}
+    </p>
+    <p>  Жанр: {{ film.genre }} </p>
+    <p>  Країна виробництва: {{ film.country }} </p>
+    <img src="{{ film.image.url }}" alt="">
+    <p>
+        {{ film.description }}
+    </p>
+   
+    <button class = "Add-To-Favourite" value="{% url 'add_to_favourite' film.id %}">
+        add favourite
+    </button>
+   
+{% endfor %}

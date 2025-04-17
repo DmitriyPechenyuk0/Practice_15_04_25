@@ -1,0 +1,25 @@
+{% load custom_tags %}
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block links %}{% endblock %}
+        {% block title %}{% endblock %}
+    </head>
+    <body>
+      <header>
+        <nav>
+          <a href="{% url 'all_films' %}">Усі фільми</a>
+          <!-- <a href="{% url 'favourites' %}">Улюблені фільми ({% count_favourite_films request %})</a> -->
+          <a href="{% url 'favourites' %}">Улюблені фільми ( <span id="count">{% count_favourite_films request %}</span> )</a>
+        </nav>
+      </header>
+      {% block content %}
+      {% endblock %}
+      <script src = "{% static 'js/jquery-3.7.1.min.js' %}" defer></script>
+      <script src ='{% static "js/favorite.js" %}' defer></script>
+      <script src ='{% static "js/send_reviews.js" %}' defer></script>
+      <script src="{% static 'js/get-request.js' %}" defer></script>
+    </body>
+</html>

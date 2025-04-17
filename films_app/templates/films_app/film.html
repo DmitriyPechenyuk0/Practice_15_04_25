@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load custom_tags %}
+
+{% block link %}
+    <link rel="stylesheet" href="">
+{% endblock %}
+
+{% block title %}
+    <title>Films</title>
+{% endblock %}
+
+{% block content %}
+    <h1>Films</h1>
+    {% filters %}
+    <div class="all-films">
+        {% films_render films %}
+    </div>
+    <form method="POST" enctype="multipart/form-data" id="reviewForm">
+        <hr>
+        <p id="message"></p>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p><button>Надіслати відгук</button></p>
+    </form>
+        
+{% endblock %}

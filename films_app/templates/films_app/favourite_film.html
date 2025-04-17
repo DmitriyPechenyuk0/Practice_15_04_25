@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% load custom_tags %}
+
+{% block  content %}
+    <h1>Улюблені фільми</h1>
+    {% films_render objects_favourite_films %}
+{% endblock %}
