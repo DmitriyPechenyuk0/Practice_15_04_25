@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpRequest, JsonResponse
+from django.http import HttpRequest, JsonResponse,HttpResponse
 from .models import Film
 from .forms import ReviewForm
 
@@ -53,6 +53,6 @@ def render_favourite_films(request):
     return render(request, 'films_app/favourite_film.html', {"objects_favourite_films": objects_favourite_films} )
 
 def get_by_filter(request, genre):
-    films = Film.objects.filter(genre = 'Бойовик')
-
-    return {"films": films}
+    films = Film.objects.filter(genre = genre)
+    data = {'films': list(films.values())}
+    return JsonResponse(data)
