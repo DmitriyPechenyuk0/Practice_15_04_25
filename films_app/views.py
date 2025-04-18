@@ -53,7 +53,7 @@ def render_favourite_films(request):
     return render(request, 'films_app/favourite_film.html', {"objects_favourite_films": objects_favourite_films} )
 
 def get_by_filter(request): 
-    genre_list = request.GET.get('genres', '')
+    genre_list = request.GET.get('genres')
 
     if genre_list:
         genres = genre_list.split('-')

@@ -4,8 +4,8 @@ $(document).ready(function(){
             let acgenres = []
             
             $('.filter:checked').each(function(){
-                acgenres.push($(this).val());
-            });
+                acgenres.push($(this).val())
+            })
 
             let value = $(this).val()
             
