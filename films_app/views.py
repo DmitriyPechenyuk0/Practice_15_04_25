@@ -52,7 +52,24 @@ def render_favourite_films(request):
         objects_favourite_films = []
     return render(request, 'films_app/favourite_film.html', {"objects_favourite_films": objects_favourite_films} )
 
-def get_by_filter(request, genre):
-    films = Film.objects.filter(genre = genre)
-    data = {'films': list(films.values())}
-    return JsonResponse(data)
+def get_by_filter(request): 
+    genre_list = request.GET.get('genres', '')
+
+    if genre_list:
+        genres = genre_list.split('-')
+        films = Film.objects.filter(genre__in=genres)
+    else:
+        genres = []
+        films = Film.objects.all()
+    
+    film_data = []
+
+    for film in films:
+        film_data.append({
+            'name': film.name,
+            'image': film.image.url,
+            'genre': film.genre,
+            'description': film.description
+        })
+    
+    return JsonResponse({'films': film_data})
